@@ -11,4 +11,6 @@ public interface TinyUrlRepository extends JpaRepository<TinyUrlEntity, Long> {
     boolean existsByOriginalUrl(String originalUrl);
 
     Optional<TinyUrlEntity> findByOriginalUrl(String originalUrl);
+
+    Optional<TinyUrlEntity> findByTinyUrl(String tinyUrl);
 }

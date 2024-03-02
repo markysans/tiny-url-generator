@@ -6,4 +6,6 @@ public interface TinyUrlService {
     TinyUrlResponse getTinyUrlGenerated(String originalUrl);
 
     TinyUrlResponse fetchTinyUrl(String originalUrl);
+
+    String redirectByTinyUrl(String tinyUrl);
 }

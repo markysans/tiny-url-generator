@@ -40,6 +40,12 @@ public class TinyUrlServiceImpl implements TinyUrlService {
                 .orElseThrow(() -> new CustomException(CustomErrorCode.NOT_FOUND_ERROR));
         return mapToTinyUrlGeneratedResponse(tinyUrlEntity);
     }
+    @Override
+    public String redirectByTinyUrl(String tinyUrl) {
+        TinyUrlEntity tinyUrlEntity = tinyUrlRepository.findByTinyUrl(tinyUrl)
+                .orElseThrow(() -> new CustomException(CustomErrorCode.NOT_FOUND_ERROR));
+        return tinyUrlEntity.getOriginalUrl();
+    }
 
     private TinyUrlResponse mapToTinyUrlGeneratedResponse(TinyUrlEntity entity) {
         return TinyUrlResponse.builder()
