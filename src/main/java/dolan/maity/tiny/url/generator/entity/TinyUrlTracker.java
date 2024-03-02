@@ -14,9 +14,9 @@ public class TinyUrlTracker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tiny_url_id", nullable = false)
-    private TinyUrlEntity tinyUrl;
+    private TinyUrlEntity tinyUrlEntity;
     // Stored as Long datatype for date time for faster query in database
     private Long hitTime;
 }

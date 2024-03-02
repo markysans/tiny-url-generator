@@ -11,7 +11,7 @@ public class UtilityFunction {
         return epochSecond.atZone(ZONE_ID).toLocalDateTime();
     }
 
-    public Long getLongFromDateTime(LocalDateTime dateTime) {
+    public static Long getLongFromDateTime(LocalDateTime dateTime) {
         return dateTime.atZone(ZONE_ID).toEpochSecond();
     }
 }
