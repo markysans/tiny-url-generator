@@ -6,6 +6,7 @@ import dolan.maity.tiny.url.generator.exception.CustomException;
 import dolan.maity.tiny.url.generator.models.response.TinyUrlResponse;
 import dolan.maity.tiny.url.generator.respository.TinyUrlRepository;
 import dolan.maity.tiny.url.generator.service.TinyUrlService;
+import dolan.maity.tiny.url.generator.service.TinyUrlTrackerService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TinyUrlServiceImpl implements TinyUrlService {
     private final TinyUrlRepository tinyUrlRepository;
+    private final TinyUrlTrackerService tinyUrlTrackerService;
     @Value("${tiny.url.alphanumeric.length}")
     private int alphanumericLength;
     @Value("${tiny.url.base.path}")
@@ -44,6 +46,7 @@ public class TinyUrlServiceImpl implements TinyUrlService {
     public String redirectByTinyUrl(String tinyUrl) {
         TinyUrlEntity tinyUrlEntity = tinyUrlRepository.findByTinyUrl(tinyUrl)
                 .orElseThrow(() -> new CustomException(CustomErrorCode.NOT_FOUND_ERROR));
+        tinyUrlTrackerService.trackHits(tinyUrlEntity);
         return tinyUrlEntity.getOriginalUrl();
     }
 
