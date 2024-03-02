@@ -4,4 +4,6 @@ import dolan.maity.tiny.url.generator.models.response.TinyUrlResponse;
 
 public interface TinyUrlService {
     TinyUrlResponse getTinyUrlGenerated(String originalUrl);
+
+    TinyUrlResponse fetchTinyUrl(String originalUrl);
 }

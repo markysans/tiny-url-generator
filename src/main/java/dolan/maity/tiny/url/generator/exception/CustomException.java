@@ -1,9 +1,7 @@
 package dolan.maity.tiny.url.generator.exception;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import dolan.maity.tiny.url.generator.enums.CustomErrorCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @Getter

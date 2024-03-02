@@ -6,6 +6,7 @@ import dolan.maity.tiny.url.generator.service.TinyUrlService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,17 @@ public class TinyUrlController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 Response.builder()
                         .message("Created Successfully")
+                        .responseDate(response)
+                        .build()
+        );
+    }
+
+    @GetMapping("/v1/fetch")
+    public ResponseEntity<Response<Object>> fetchTinyUrl(@RequestParam String originalUrl) {
+        TinyUrlResponse response = tinyUrlService.fetchTinyUrl(originalUrl);
+        return ResponseEntity.status(HttpStatus.FOUND).body(
+                Response.builder()
+                        .message("Fetched Successfully")
                         .responseDate(response)
                         .build()
         );
